@@ -1,7 +1,6 @@
 package com.example.dormitory_management.service;
 
 import com.example.dormitory_management.dto.RoomDTO;
-import com.example.dormitory_management.entity.Room;
 
 import java.util.List;
 import java.util.Optional;

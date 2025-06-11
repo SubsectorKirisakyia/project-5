@@ -10,7 +10,6 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,12 +22,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public RoomDTO createRoom(RoomDTO roomDTO) {
-        Room room = new Room();
-        room.setRoomNumber(roomDTO.getRoomNumber());
-        room.setStatus(roomDTO.getStatus());
-        room.setCapacity(roomDTO.getCapacity());
-        room.setCurrentOccupancy(room.getCurrentOccupancy());
-        room.setGender(room.getGender());
+        Room room = RoomMapper.toEntity(roomDTO);
         return RoomMapper.toDTO(roomRepository.save(room));
     }
 
@@ -56,7 +50,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public Optional<RoomDTO> getRoomById(Long roomId) {
-        Room room = roomRepository.findById(roomId).orElseThrow(() -> new ResourceNotFoundException("Room was not found with ID: " + roomId));
+        Room room = roomRepository.findById(roomId).orElseThrow(() -> new EntityNotFoundException("Room was not found with ID: " + roomId));
         return Optional.of(RoomMapper.toDTO(room));
     }
 
