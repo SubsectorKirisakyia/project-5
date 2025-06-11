@@ -1,3 +1,12 @@
+package com.example.dormitory_management.controller;
+
+import com.example.dormitory_management.dto.RoomDTO;
+import com.example.dormitory_management.exception.ResourceNotFoundException;
+import com.example.dormitory_management.service.RoomService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -14,7 +23,8 @@ public class RoomController {
 
     @GetMapping("/{id}")
     public ResponseEntity<RoomDTO> getRoomById(@PathVariable Long id) {
-        return ResponseEntity.ok(roomService.getRoomById(id));
+        RoomDTO dto = roomService.getRoomById(id).orElseThrow(() -> new ResourceNotFoundException("Unable to find room"));
+        return ResponseEntity.ok(dto);
     }
 
     @PostMapping

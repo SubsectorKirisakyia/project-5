@@ -26,7 +26,7 @@ public class Room {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Gender gender;
+    private String gender;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

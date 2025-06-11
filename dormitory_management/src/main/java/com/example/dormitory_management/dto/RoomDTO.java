@@ -1,5 +1,4 @@
 package com.example.dormitory_management.dto;
-import com.example.dormitory.entity.Room;
 import lombok.*;
 
 @Data
