@@ -32,8 +32,7 @@ public class Payment {
     @Column(name = "paid_date")
     private LocalDate paidDate;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "ENUM('unpaid', 'paid', 'late') DEFAULT 'unpaid'")
+    @Column(nullable = false)
     private String status = PaymentStatus.UNPAID;
 
     public class PaymentStatus {

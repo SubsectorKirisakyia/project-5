@@ -25,8 +25,8 @@ public class RoomApplication {
     @Column(name = "apply_date", nullable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime applyDate = LocalDateTime.now();
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "ENUM('pending', 'approved', 'rejected') DEFAULT 'pending'")
+
+    @Column(nullable = false)
     private String status = ApplicationStatus.PENDING;
 
     @ManyToOne(fetch = FetchType.LAZY)

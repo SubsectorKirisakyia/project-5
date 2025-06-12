@@ -24,11 +24,9 @@ public class Room {
     @Column(nullable = false)
     private int currentOccupancy = 0;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private String gender;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private String status = RoomStatus.AVAILABLE;
 
