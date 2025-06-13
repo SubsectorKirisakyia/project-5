@@ -3,6 +3,7 @@ package com.example.dormitory_management.service.impl;
 import com.example.dormitory_management.dto.StudentDTO;
 import com.example.dormitory_management.entity.Room;
 import com.example.dormitory_management.entity.Student;
+import com.example.dormitory_management.exception.StudentCodeInUseException;
 import com.example.dormitory_management.mappers.RoomMapper;
 import com.example.dormitory_management.mappers.StudentMapper;
 import com.example.dormitory_management.repository.StudentRepository;
@@ -28,7 +29,7 @@ public class StudentServiceImpl implements StudentService {
             Student student = StudentMapper.toEntity(dto);
             return StudentMapper.toDTO(studentRepository.save(student));
         }
-        throw new EntityExistsException("A student with the following code "+dto.getStudentCode()+" already exists, abort adding student.");
+        throw new StudentCodeInUseException("A student with the following code "+dto.getStudentCode()+" already exists, abort adding student.");
     }
 
     @Override
@@ -38,7 +39,8 @@ public class StudentServiceImpl implements StudentService {
             studentRepository.findByStudentCode(student.getStudentCode())
                     .ifPresent(std -> {
                         if (!std.getStudentId().equals(existingStd.getStudentId())) {
-                            throw new EntityExistsException("Student code is already in use by another student");
+                            String code = student.getStudentCode();
+                            throw new StudentCodeInUseException("Student code "+code+" is already in use by another student");
                         }
                     });
         }
