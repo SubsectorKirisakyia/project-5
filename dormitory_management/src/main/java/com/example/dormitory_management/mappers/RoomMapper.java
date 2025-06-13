@@ -11,7 +11,6 @@ public class RoomMapper {
         if (room == null) return null;
 
         return RoomDTO.builder()
-                .roomId(room.getRoomId())
                 .roomNumber(room.getRoomNumber())
                 .capacity(room.getCapacity())
                 .currentOccupancy(room.getCurrentOccupancy())
@@ -24,7 +23,6 @@ public class RoomMapper {
         if (dto == null) return null;
 
         return Room.builder()
-                .roomId(dto.getRoomId())
                 .roomNumber(dto.getRoomNumber())
                 .capacity(dto.getCapacity())
                 .currentOccupancy(dto.getCurrentOccupancy())

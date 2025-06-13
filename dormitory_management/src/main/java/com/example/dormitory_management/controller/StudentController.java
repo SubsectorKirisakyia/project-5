@@ -3,6 +3,7 @@ package com.example.dormitory_management.controller;
 import com.example.dormitory_management.dto.StudentDTO;
 import com.example.dormitory_management.exception.ResourceNotFoundException;
 import com.example.dormitory_management.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,12 +29,12 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<StudentDTO> createRoom(@RequestBody StudentDTO studentDTO) {
+    public ResponseEntity<StudentDTO> createRoom(@Valid @RequestBody StudentDTO studentDTO) {
         return ResponseEntity.ok(studentService.createStudent(studentDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StudentDTO> updateRoom(@PathVariable Long id, @RequestBody StudentDTO studentDTO) {
+    public ResponseEntity<StudentDTO> updateRoom(@PathVariable Long id, @Valid @RequestBody StudentDTO studentDTO) {
         return ResponseEntity.ok(studentService.updateStudent(id, studentDTO));
     }
 

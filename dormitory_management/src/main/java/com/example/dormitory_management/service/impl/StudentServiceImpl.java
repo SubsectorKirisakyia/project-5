@@ -7,6 +7,7 @@ import com.example.dormitory_management.mappers.RoomMapper;
 import com.example.dormitory_management.mappers.StudentMapper;
 import com.example.dormitory_management.repository.StudentRepository;
 import com.example.dormitory_management.service.StudentService;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,13 +24,24 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDTO createStudent(StudentDTO dto) {
-        Student student = StudentMapper.toEntity(dto);
-        return StudentMapper.toDTO(studentRepository.save(student));
+        if (studentRepository.findByStudentCode(dto.getStudentCode()).isEmpty()){
+            Student student = StudentMapper.toEntity(dto);
+            return StudentMapper.toDTO(studentRepository.save(student));
+        }
+        throw new EntityExistsException("A student with the following code "+dto.getStudentCode()+" already exists, abort adding student.");
     }
 
     @Override
     public StudentDTO updateStudent(Long studentId, StudentDTO student) {
         Student existingStd = studentRepository.findById(studentId).orElseThrow(() -> new EntityNotFoundException("Student with the following ID does not exists: "+studentId));
+        if (!student.getStudentCode().equals(existingStd.getStudentCode())) {
+            studentRepository.findByStudentCode(student.getStudentCode())
+                    .ifPresent(std -> {
+                        if (!std.getStudentId().equals(existingStd.getStudentId())) {
+                            throw new EntityExistsException("Student code is already in use by another student");
+                        }
+                    });
+        }
         existingStd.setStudentCode(student.getStudentCode());
         existingStd.setDepartment(student.getDepartment());
         existingStd.setEmail(student.getEmail());

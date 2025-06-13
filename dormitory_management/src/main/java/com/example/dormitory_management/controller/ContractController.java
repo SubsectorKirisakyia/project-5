@@ -3,6 +3,7 @@ package com.example.dormitory_management.controller;
 import com.example.dormitory_management.dto.ContractDTO;
 import com.example.dormitory_management.exception.ResourceNotFoundException;
 import com.example.dormitory_management.service.ContractService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,12 +29,12 @@ public class ContractController {
     }
 
     @PostMapping
-    public ResponseEntity<ContractDTO> createContract(@RequestBody ContractDTO contractDTO) {
+    public ResponseEntity<ContractDTO> createContract(@Valid @RequestBody ContractDTO contractDTO) {
         return ResponseEntity.ok(contractService.createContract(contractDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ContractDTO> updateContract(@PathVariable Long id, @RequestBody ContractDTO contractDTO) {
+    public ResponseEntity<ContractDTO> updateContract(@PathVariable Long id, @Valid @RequestBody ContractDTO contractDTO) {
         return ResponseEntity.ok(contractService.updateContract(id, contractDTO));
     }
 

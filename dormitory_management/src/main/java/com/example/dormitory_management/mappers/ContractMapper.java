@@ -14,7 +14,6 @@ public class ContractMapper {
         if (entity == null) return null;
 
         return ContractDTO.builder()
-                .contractId(entity.getContractId())
                 .studentId(entity.getStudent() != null ? entity.getStudent().getStudentId() : null)
                 .roomId(entity.getRoom() != null ? entity.getRoom().getRoomId() : null)
                 .startDate(entity.getStartDate())
@@ -27,7 +26,6 @@ public class ContractMapper {
         if (dto == null) return null;
 
         return Contract.builder()
-                .contractId(dto.getContractId())
                 .student(student)
                 .room(room)
                 .startDate(dto.getStartDate())

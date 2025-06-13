@@ -10,7 +10,6 @@ public class PaymentMapper {
         if (entity == null) return null;
 
         return PaymentDTO.builder()
-                .paymentId(entity.getPaymentId())
                 .contractId(entity.getContract() != null ? entity.getContract().getContractId() : null)
                 .amount(entity.getAmount())
                 .dueDate(entity.getDueDate())
@@ -23,7 +22,6 @@ public class PaymentMapper {
         if (dto == null) return null;
 
         Payment payment = new Payment();
-        payment.setPaymentId(dto.getPaymentId());
         payment.setContract(contract);
         payment.setAmount(dto.getAmount());
         payment.setDueDate(dto.getDueDate());

@@ -3,6 +3,7 @@ package com.example.dormitory_management.controller;
 import com.example.dormitory_management.dto.RoomPriceDTO;
 import com.example.dormitory_management.exception.ResourceNotFoundException;
 import com.example.dormitory_management.service.RoomPriceService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,12 +29,12 @@ public class RoomPriceController {
     }
 
     @PostMapping
-    public ResponseEntity<RoomPriceDTO> createRoomPrice(@RequestBody RoomPriceDTO roomPriceDTO) {
+    public ResponseEntity<RoomPriceDTO> createRoomPrice(@Valid @RequestBody RoomPriceDTO roomPriceDTO) {
         return ResponseEntity.ok(roomPriceService.createRoomPrice(roomPriceDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RoomPriceDTO> updateRoomPrice(@PathVariable Long id, @RequestBody RoomPriceDTO roomPriceDTO) {
+    public ResponseEntity<RoomPriceDTO> updateRoomPrice(@PathVariable Long id, @Valid @RequestBody RoomPriceDTO roomPriceDTO) {
         return ResponseEntity.ok(roomPriceService.updateRoomPrice(id, roomPriceDTO));
     }
 

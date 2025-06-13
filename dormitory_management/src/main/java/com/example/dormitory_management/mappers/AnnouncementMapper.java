@@ -13,7 +13,6 @@ public class AnnouncementMapper {
         if (entity == null) return null;
 
         return AnnouncementDTO.builder()
-                .announcementId(entity.getAnnouncementId())
                 .title(entity.getTitle())
                 .content(entity.getContent())
                 .createdAt(entity.getCreatedAt())
@@ -24,7 +23,6 @@ public class AnnouncementMapper {
         if (dto == null) return null;
 
         return Announcement.builder()
-                .announcementId(dto.getAnnouncementId()) // Optional — omit if handled by DB
                 .title(dto.getTitle())
                 .content(dto.getContent())
                 .createdAt(dto.getCreatedAt() != null ? dto.getCreatedAt() : LocalDateTime.now())

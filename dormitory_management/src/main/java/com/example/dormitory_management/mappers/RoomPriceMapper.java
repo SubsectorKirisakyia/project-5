@@ -10,7 +10,6 @@ public class RoomPriceMapper {
         if (entity == null) return null;
 
         return RoomPriceDTO.builder()
-                .priceId(entity.getPriceId())
                 .roomId(entity.getRoom() != null ? entity.getRoom().getRoomId() : null)
                 .pricePerStudent(entity.getPricePerStudent())
                 .effectiveFrom(entity.getEffectiveFrom())
@@ -22,7 +21,6 @@ public class RoomPriceMapper {
         if (dto == null) return null;
 
         RoomPrice price = new RoomPrice();
-        price.setPriceId(dto.getPriceId());
         price.setRoom(room);
         price.setPricePerStudent(dto.getPricePerStudent());
         price.setEffectiveFrom(dto.getEffectiveFrom());

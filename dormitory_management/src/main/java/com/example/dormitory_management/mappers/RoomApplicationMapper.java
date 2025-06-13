@@ -13,7 +13,6 @@ public class RoomApplicationMapper {
         if (entity == null) return null;
 
         return RoomApplicationDTO.builder()
-                .applicationId(entity.getApplicationId())
                 .studentId(entity.getStudent() != null ? entity.getStudent().getStudentId() : null)
                 .roomId(entity.getRoom() != null ? entity.getRoom().getRoomId() : null)
                 .applyDate(entity.getApplyDate())
@@ -25,7 +24,6 @@ public class RoomApplicationMapper {
         if (dto == null) return null;
 
         RoomApplication app = new RoomApplication();
-        app.setApplicationId(dto.getApplicationId());
         app.setStudent(student);
         app.setRoom(room); // nullable
         app.setApplyDate(dto.getApplyDate() != null ? dto.getApplyDate() : LocalDateTime.now());

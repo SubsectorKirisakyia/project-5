@@ -1,4 +1,4 @@
-drop DATABASE dormitory_management;
+drop DATABASE IF EXISTS dormitory_management;
 
 CREATE DATABASE IF NOT EXISTS dormitory_management
 CHARACTER SET utf8mb4

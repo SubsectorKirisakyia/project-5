@@ -9,7 +9,6 @@ public class StudentMapper {
         if (student == null) return null;
 
         StudentDTO dto = new StudentDTO();
-        dto.setStudentId(student.getStudentId());
         dto.setFullName(student.getFullName());
         dto.setGender(student.getGender());
         dto.setDateOfBirth(student.getDateOfBirth());
@@ -24,7 +23,6 @@ public class StudentMapper {
         if (dto == null) return null;
 
         Student student = new Student();
-        student.setStudentId(dto.getStudentId());
         student.setFullName(dto.getFullName());
         student.setGender(dto.getGender());
         student.setDateOfBirth(dto.getDateOfBirth());
