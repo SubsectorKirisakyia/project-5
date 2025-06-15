@@ -1,6 +1,5 @@
-package com.example.dormitory_management.repository;
+package com.example.dormitory_management.user_management;
 
-import com.example.dormitory_management.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

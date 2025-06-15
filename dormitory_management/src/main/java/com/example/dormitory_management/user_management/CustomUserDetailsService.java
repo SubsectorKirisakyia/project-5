@@ -1,6 +1,5 @@
-package com.example.dormitory_management.service.impl;
+package com.example.dormitory_management.user_management;
 
-import com.example.dormitory_management.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;

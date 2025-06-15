@@ -1,4 +1,4 @@
-package com.example.dormitory_management.entity;
+package com.example.dormitory_management.user_management;
 
 import jakarta.persistence.*;
 import lombok.*;
