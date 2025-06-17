@@ -6,6 +6,7 @@ import com.example.dormitory_management.service.PaymentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,16 +30,19 @@ public class PaymentController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
     public ResponseEntity<PaymentDTO> createPayment(@Valid @RequestBody PaymentDTO paymentDTO) {
         return ResponseEntity.ok(paymentService.createPayment(paymentDTO));
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
     public ResponseEntity<PaymentDTO> updatePayment(@PathVariable Long id, @Valid @RequestBody PaymentDTO paymentDTO) {
         return ResponseEntity.ok(paymentService.updatePayment(id, paymentDTO));
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
     public ResponseEntity<Void> deletePayment(@PathVariable Long id) {
         paymentService.deletePayment(id);
         return ResponseEntity.noContent().build();

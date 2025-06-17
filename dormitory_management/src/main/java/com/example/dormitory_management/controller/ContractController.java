@@ -6,6 +6,7 @@ import com.example.dormitory_management.service.ContractService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,16 +30,19 @@ public class ContractController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
     public ResponseEntity<ContractDTO> createContract(@Valid @RequestBody ContractDTO contractDTO) {
         return ResponseEntity.ok(contractService.createContract(contractDTO));
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
     public ResponseEntity<ContractDTO> updateContract(@PathVariable Long id, @Valid @RequestBody ContractDTO contractDTO) {
         return ResponseEntity.ok(contractService.updateContract(id, contractDTO));
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
     public ResponseEntity<Void> deleteContract(@PathVariable Long id) {
         contractService.deleteContract(id);
         return ResponseEntity.noContent().build();

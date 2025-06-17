@@ -6,6 +6,7 @@ import com.example.dormitory_management.service.RoomService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,16 +30,19 @@ public class RoomController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
     public ResponseEntity<RoomDTO> createRoom(@Valid @RequestBody RoomDTO roomDTO) {
         return ResponseEntity.ok(roomService.createRoom(roomDTO));
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
     public ResponseEntity<RoomDTO> updateRoom(@PathVariable Long id, @Valid @RequestBody RoomDTO roomDTO) {
         return ResponseEntity.ok(roomService.updateRoom(id, roomDTO));
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
     public ResponseEntity<Void> deleteRoom(@PathVariable Long id) {
         roomService.deleteRoom(id);
         return ResponseEntity.noContent().build();
