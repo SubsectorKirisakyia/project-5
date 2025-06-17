@@ -6,6 +6,7 @@ import com.example.dormitory_management.service.AnnouncementService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,17 +29,21 @@ public class AnnouncementController {
         return ResponseEntity.ok(dto);
     }
 
+
     @PostMapping
+    @PreAuthorize("hasAnyRole('admin', 'manager')")
     public ResponseEntity<AnnouncementDTO> createAnnouncement(@Valid @RequestBody AnnouncementDTO announcementDTO) {
         return ResponseEntity.ok(announcementService.createAnnouncement(announcementDTO));
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('admin', 'manager')")
     public ResponseEntity<AnnouncementDTO> updateAnnouncement(@PathVariable Long id, @Valid @RequestBody AnnouncementDTO announcementDTO) {
         return ResponseEntity.ok(announcementService.updateAnnouncement(id, announcementDTO));
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('admin', 'manager')")
     public ResponseEntity<Void> deleteAnnouncement(@PathVariable Long id) {
         announcementService.deleteAnnouncement(id);
         return ResponseEntity.noContent().build();

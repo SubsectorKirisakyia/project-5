@@ -48,5 +48,9 @@ public class AuthService {
         String jwt = jwtService.generateToken(user.getUsername());
         return new AuthResponse(jwt);
     }
+
+    public boolean verifyUserExists(String username){
+        return userRepository.existsByUsername(username);
+    }
 }
 

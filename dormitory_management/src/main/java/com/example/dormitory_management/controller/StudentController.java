@@ -29,17 +29,17 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<StudentDTO> createRoom(@Valid @RequestBody StudentDTO studentDTO) {
+    public ResponseEntity<StudentDTO> createStudent(@Valid @RequestBody StudentDTO studentDTO) {
         return ResponseEntity.ok(studentService.createStudent(studentDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StudentDTO> updateRoom(@PathVariable Long id, @Valid @RequestBody StudentDTO studentDTO) {
+    public ResponseEntity<StudentDTO> updateStudent(@PathVariable Long id, @Valid @RequestBody StudentDTO studentDTO) {
         return ResponseEntity.ok(studentService.updateStudent(id, studentDTO));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRoom(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
         return ResponseEntity.noContent().build();
     }
