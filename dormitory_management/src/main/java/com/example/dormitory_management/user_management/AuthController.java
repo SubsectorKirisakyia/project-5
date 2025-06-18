@@ -50,7 +50,7 @@ public class AuthController {
 
         for(RegisterRequest request : preRegistrations){
             if (!authService.verifyUserExists(request.getUsername())){
-                authService.register(request);
+                authService.preRegister(request);
             }
         }
     }

@@ -49,6 +49,24 @@ public class AuthService {
         return new AuthResponse(jwt);
     }
 
+    protected void preRegister(RegisterRequest request) {
+        if (userRepository.existsByUsername(request.getUsername())) {
+            throw new UsernameAlreadyExistsException("Username already in use.");
+        }
+
+        Role role = Role.fromString(request.getRole());
+
+        User user = User.builder()
+                .username(request.getUsername())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .fullName(request.getFullName())
+                .role(role.name())
+                .isActive(true)
+                .build();
+
+        userRepository.save(user);
+    }
+
     public boolean verifyUserExists(String username){
         return userRepository.existsByUsername(username);
     }
