@@ -30,19 +30,19 @@ public class RoomPriceController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF')")
     public ResponseEntity<RoomPriceDTO> createRoomPrice(@Valid @RequestBody RoomPriceDTO roomPriceDTO) {
         return ResponseEntity.ok(roomPriceService.createRoomPrice(roomPriceDTO));
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF')")
     public ResponseEntity<RoomPriceDTO> updateRoomPrice(@PathVariable Long id, @Valid @RequestBody RoomPriceDTO roomPriceDTO) {
         return ResponseEntity.ok(roomPriceService.updateRoomPrice(id, roomPriceDTO));
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF')")
     public ResponseEntity<Void> deleteRoomPrice(@PathVariable Long id) {
         roomPriceService.deleteRoomPrice(id);
         return ResponseEntity.noContent().build();

@@ -31,19 +31,19 @@ public class AnnouncementController {
 
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('admin', 'manager')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public ResponseEntity<AnnouncementDTO> createAnnouncement(@Valid @RequestBody AnnouncementDTO announcementDTO) {
         return ResponseEntity.ok(announcementService.createAnnouncement(announcementDTO));
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('admin', 'manager')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public ResponseEntity<AnnouncementDTO> updateAnnouncement(@PathVariable Long id, @Valid @RequestBody AnnouncementDTO announcementDTO) {
         return ResponseEntity.ok(announcementService.updateAnnouncement(id, announcementDTO));
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('admin', 'manager')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public ResponseEntity<Void> deleteAnnouncement(@PathVariable Long id) {
         announcementService.deleteAnnouncement(id);
         return ResponseEntity.noContent().build();

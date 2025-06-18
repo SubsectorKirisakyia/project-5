@@ -26,7 +26,6 @@ import java.util.Map;
 public class AuthController {
 
     private final AuthService authService;
-    private final PasswordEncoder encoder;
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {

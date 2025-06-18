@@ -30,19 +30,19 @@ public class StudentController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF')")
     public ResponseEntity<StudentDTO> createStudent(@Valid @RequestBody StudentDTO studentDTO) {
         return ResponseEntity.ok(studentService.createStudent(studentDTO));
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF')")
     public ResponseEntity<StudentDTO> updateStudent(@PathVariable Long id, @Valid @RequestBody StudentDTO studentDTO) {
         return ResponseEntity.ok(studentService.updateStudent(id, studentDTO));
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF')")
     public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
         return ResponseEntity.noContent().build();

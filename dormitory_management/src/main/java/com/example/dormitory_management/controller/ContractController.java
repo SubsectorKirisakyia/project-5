@@ -30,19 +30,19 @@ public class ContractController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF')")
     public ResponseEntity<ContractDTO> createContract(@Valid @RequestBody ContractDTO contractDTO) {
         return ResponseEntity.ok(contractService.createContract(contractDTO));
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF')")
     public ResponseEntity<ContractDTO> updateContract(@PathVariable Long id, @Valid @RequestBody ContractDTO contractDTO) {
         return ResponseEntity.ok(contractService.updateContract(id, contractDTO));
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF')")
     public ResponseEntity<Void> deleteContract(@PathVariable Long id) {
         contractService.deleteContract(id);
         return ResponseEntity.noContent().build();

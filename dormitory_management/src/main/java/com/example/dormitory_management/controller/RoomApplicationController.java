@@ -30,19 +30,19 @@ public class RoomApplicationController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF')")
     public ResponseEntity<RoomApplicationDTO> createRoomApplication(@Valid @RequestBody RoomApplicationDTO roomApplicationDTO) {
         return ResponseEntity.ok(roomApplicationService.createRoomApplication(roomApplicationDTO));
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF')")
     public ResponseEntity<RoomApplicationDTO> updateRoomApplication(@PathVariable Long id, @Valid @RequestBody RoomApplicationDTO roomApplicationDTO) {
         return ResponseEntity.ok(roomApplicationService.updateRoomApplication(id, roomApplicationDTO));
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('admin', 'manager', 'staff')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF')")
     public ResponseEntity<Void> deleteRoomApplication(@PathVariable Long id) {
         roomApplicationService.deleteRoomApplication(id);
         return ResponseEntity.noContent().build();
