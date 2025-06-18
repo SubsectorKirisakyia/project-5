@@ -79,7 +79,7 @@ CREATE TABLE users (
     username VARCHAR(50) NOT NULL UNIQUE,                -- Tên đăng nhập (duy nhất)
     password_hash VARCHAR(255) NOT NULL,                 -- Mật khẩu đã mã hóa (băm)
     full_name VARCHAR(100),                              -- Họ tên người dùng
-    role ENUM('admin', 'manager', 'staff') DEFAULT 'staff', -- Vai trò
+    role ENUM('ADMIN', 'MANAGER', 'STAFF') DEFAULT 'STAFF', -- Vai trò
     is_active BOOLEAN DEFAULT TRUE                       -- Trạng thái hoạt động
 );
 

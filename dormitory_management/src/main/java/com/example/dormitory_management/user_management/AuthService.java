@@ -21,13 +21,13 @@ public class AuthService {
             throw new UsernameAlreadyExistsException("Username already in use.");
         }
 
-        Role role = Role.valueOf(request.getRole().toUpperCase());
+        Role role = Role.fromString(request.getRole());
 
         User user = User.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .fullName(request.getFullName())
-                .role(role)
+                .role(role.name())
                 .isActive(true)
                 .build();
 

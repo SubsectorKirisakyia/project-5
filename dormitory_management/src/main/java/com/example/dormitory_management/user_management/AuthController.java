@@ -41,9 +41,9 @@ public class AuthController {
     @PostConstruct
     private void PreRegisterUsers(){
         List<RegisterRequest> preRegistrations = new ArrayList<>();
-        RegisterRequest request1 = new RegisterRequest("VanA", encoder.encode("123456"), "Nguyen Van A", "admin");
-        RegisterRequest request2 = new RegisterRequest("VanB", encoder.encode("123456"), "Nguyen Van B", "manager");
-        RegisterRequest request3 = new RegisterRequest("VanC", encoder.encode("123456"), "Nguyen Van C", "staff");
+        RegisterRequest request1 = new RegisterRequest("VanA", "123456", "Nguyen Van A", "ADMIN");
+        RegisterRequest request2 = new RegisterRequest("VanB", "123456", "Nguyen Van B", "MANAGER");
+        RegisterRequest request3 = new RegisterRequest("VanC", "123456", "Nguyen Van C", "STAFF");
         preRegistrations.add(request1);
         preRegistrations.add(request2);
         preRegistrations.add(request3);
@@ -54,4 +54,6 @@ public class AuthController {
             }
         }
     }
+
+
 }

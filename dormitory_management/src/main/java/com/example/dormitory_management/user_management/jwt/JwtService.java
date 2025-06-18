@@ -1,9 +1,14 @@
 package com.example.dormitory_management.user_management.jwt;
 
+import com.example.dormitory_management.user_management.Role;
+import com.example.dormitory_management.user_management.User;
+import com.example.dormitory_management.user_management.UserRepository;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyGenerator;
@@ -13,6 +18,9 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
+
+    @Autowired
+    private UserRepository userRepository;
 
     private final String secretKey;
 
@@ -29,7 +37,12 @@ public class JwtService {
 
     public String generateToken(String Username) {
         Map<String, Object> claims = new HashMap<>();
+        User user = userRepository.findByUsername(Username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found to be assigned for token generation"));
 
+        Role role = Role.fromString(String.valueOf(user.getRole())); // handle lowercase
+
+        claims.put("role", role.name()); // Store in proper uppercase
         return Jwts.builder()
                 .claims()
                 .add(claims)

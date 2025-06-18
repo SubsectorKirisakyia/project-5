@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
 public class User implements UserDetails {
 
     @Id
@@ -30,8 +31,8 @@ public class User implements UserDetails {
     @Column(name = "full_name", length = 100)
     private String fullName;
 
-    @Enumerated(EnumType.STRING)
-    private Role role = Role.STAFF;
+    @Column(nullable = false)
+    private String role;
 
     @Column(name = "is_active")
     private boolean isActive = true;
@@ -39,7 +40,7 @@ public class User implements UserDetails {
     // Spring Security related
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(role);
+        return List.of(Role.fromString(role));
     }
 
     @Override
