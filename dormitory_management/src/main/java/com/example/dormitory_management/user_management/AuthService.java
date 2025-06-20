@@ -50,10 +50,6 @@ public class AuthService {
     }
 
     protected void preRegister(RegisterRequest request) {
-        if (userRepository.existsByUsername(request.getUsername())) {
-            throw new UsernameAlreadyExistsException("Username already in use.");
-        }
-
         Role role = Role.fromString(request.getRole());
 
         User user = User.builder()
