@@ -15,14 +15,14 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class RoomPriceDTO {
-    @NotNull(message = "Room ID is required")
+    @NotNull(message = "Room ID phải được khai báo")
     private Long roomId;
 
-    @NotNull(message = "Price per student is required")
-    @DecimalMin(value = "0.0", inclusive = false, message = "Price must be greater than 0")
+    @NotNull(message = "Giá cho mỗi sinh viên phải được khai báo")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Giá phải lớn hơn 0")
     private BigDecimal pricePerStudent;
 
-    @NotNull(message = "Effective from date is required")
+    @NotNull(message = "Ngày bắt đầu hiệu lực phải được khai báo")
     private LocalDate effectiveFrom;
     private LocalDate effectiveTo;
 }

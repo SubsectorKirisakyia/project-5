@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class RoomApplicationDTO {
-    @NotNull(message = "Student ID is required")
+    @NotNull(message = "Student ID phải được khai báo")
     private Long studentId;
 
     private Long roomId;

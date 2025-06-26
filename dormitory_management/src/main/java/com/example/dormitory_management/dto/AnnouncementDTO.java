@@ -15,12 +15,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class AnnouncementDTO {
-    @NotBlank(message = "Title is required")
-    @Size(max = 100, message = "Title must be at most 100 characters")
+    @NotBlank(message = "Tiêu đề không để trống")
+    @Size(max = 100, message = "Tiêu đề nhiều nhất phải dưới 100 ký tự")
     private String title;
 
-    @NotBlank(message = "Content is required")
-    @Size(max = 1000, message = "Content must be at most 1000 characters")
+    @NotBlank(message = "Nội dung không để trống")
+    @Size(max = 1000, message = "Nội dung không thể chứa hơn 1000 ký tự")
     private String content;
 
     private LocalDateTime createdAt;

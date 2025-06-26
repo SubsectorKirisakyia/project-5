@@ -16,20 +16,20 @@ import java.time.LocalDate;
 @Builder
 @ValidDateRange
 public class ContractDTO {
-    @NotNull(message = "Student ID is required")
+    @NotNull(message = "Student ID bắt buộc không để trống")
     private Long studentId;
 
-    @NotNull(message = "Room ID is required")
+    @NotNull(message = "Room ID bắt buộc không để trống")
     private Long roomId;
 
-    @NotNull(message = "Start date is required")
+    @NotNull(message = "Ngày đăng ký không để trống")
     private LocalDate startDate;
 
-    @NotNull(message = "End date is required")
-    @Future(message = "End date must be in the future")
+    @NotNull(message = "Ngày kết thúc phải được điền")
+    @Future(message = "Ngày kết thúc phải là một thời điểm trong những ngày tiếp theo")
     private LocalDate endDate;
 
-    @NotNull(message = "Active status must be specified")
+    @NotNull(message = "Trạng thái phải được khai báo")
     private Boolean isActive;
 }
 

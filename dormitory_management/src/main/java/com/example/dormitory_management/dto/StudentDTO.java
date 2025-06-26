@@ -15,26 +15,26 @@ public class StudentDTO {
     @Size(max = 100, message = "Full name must not exceed 100 characters")
     private String fullName;
 
-    @NotBlank(message = "Gender is required")
+    @NotBlank(message = "Giơi tính phải được khai báo")
     @Pattern(regexp = "male|female", flags = Pattern.Flag.CASE_INSENSITIVE,
-            message = "Gender must be either 'male' or 'female'")
+            message = "Giới tính phải là 'nam' hoặc 'nữ'")
     private String gender;
 
-    @Past(message = "Date of birth must be in the past")
+    @Past(message = "Ngày sinh phải là một thời điểm trong quá khứ")
     private LocalDate dateOfBirth;
 
-    @Size(max = 20, message = "Phone number must not exceed 20 characters")
-    @Pattern(regexp = "\\+?\\d{0,20}", message = "Phone number must be numeric and may start with +")
+    @Size(max = 20, message = "Số điện thoại không quá 20 ký tự")
+    @Pattern(regexp = "\\+?\\d{0,20}", message = "Số điện thoại có thể bắt đầu bằng dấu + và bắt buộc chỉ có ký tự số sau đó")
     private String phone;
 
-    @Email(message = "Email must be valid")
-    @Size(max = 100, message = "Email must not exceed 100 characters")
+    @Email(message = "Email phải là trường hợp lệ, vd: 'user@email.com'")
+    @Size(max = 100, message = "Email không quá 100 ký tự")
     private String email;
 
-    @Size(max = 100, message = "Department name must not exceed 100 characters")
+    @Size(max = 100, message = "Tên phòng ban không quá 100 ký tự")
     private String department;
 
-    @NotBlank(message = "Student code is required")
-    @Size(max = 20, message = "Student code must not exceed 20 characters")
+    @NotBlank(message = "Mã sinh viên phải được khai báo")
+    @Size(max = 20, message = "Mã sinh viên không quá 20 ký tự")
     private String studentCode;
 }
