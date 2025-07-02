@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Đăng nhập')),
+      appBar: AppBar(title: const Text('Đăng nhập'), centerTitle: true),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
